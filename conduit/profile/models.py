@@ -11,6 +11,9 @@ followers_assoc = db.Table("followers_assoc",
 
 class UserProfile(Model, SurrogatePK):
     __tablename__ = 'userprofile'
+    __table_args__ = (
+        db.UniqueConstraint('user_id'),
+    )
 
     # id is needed for primary join, it does work with SurrogatePK class
     id = db.Column(db.Integer, primary_key=True)
