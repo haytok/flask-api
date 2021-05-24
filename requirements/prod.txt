@@ -1,5 +1,6 @@
 # Everything needed in production
 
+requests
 Werkzeug
 SQLAlchemy
 Flask_Caching
