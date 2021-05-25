@@ -23,3 +23,9 @@
 - requests 2.25.1
 
 - curl 7.58.0 (x86_64-pc-linux-gnu)
+
+### REST API の仕様
+
+- [仕様](https://github.com/gothinkster/realworld/tree/master/api)
+  - ユーザ認証 (認証方式は JWT) で、CRUD の API を兼ね備えた REST API である。
+  - [RealWorld example apps](https://github.com/gothinkster/realworld) の backends を参考にしている。
