@@ -1,16 +1,49 @@
-# 背景と目的
+# 目的
+
+- Heroku 上の REST API に対して curl と Python の requests で HTTP request を投げる。
+
+# 準備
+
+## 手段 1
+
+- 仮想環境上で以下のコマンドを実行する。
+
+```bash
+pip install -r requirements.txt
+```
+
+## 手段 2
+
+- Docker を使用する。
+
+```bash
+docker build -t .
+docker run -it -v `pwd`:`pwd` main
+```
 
 # 方法
 
-- ユーザを作成するための API を叩く curl コマンド
+## 手段 1
+
+- Pyhton スクリプトで処理を行う。
+
+```bash
+python main.py
+```
+
+## 手段 2
+
+- curl コマンドだけで処理を行う。
+
+- ユーザを作成するための API を叩く curl コマンドである。
+
 - `main.py` の `Main.create_user()` に該当する。 
 
 ```bash
 curl -X POST \
-  http://127.0.0.1:5000/api/users \
+  https://boiling-wildwood-20063.herokuapp.com/api/users \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -H 'postman-token: baf48c18-5238-8958-b2f1-cfa18f0f336b' \
   -H 'x-requested-with: XMLHttpRequest' \
   -d '{
 	"user": {
@@ -21,36 +54,33 @@ curl -X POST \
 }'
 ```
 
--   ログインするための API を叩く curl コマンド
+- ログインするための API を叩く curl コマンドである。
 - `main.py` の `Main.login_user()` に該当する。 
 
 ```bash
 curl -X GET \
-  http://127.0.0.1:5000/api/user \
-  -H 'authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjE1MDA2MDgsIm5iZiI6MTYyMTUwMDYwOCwianRpIjoiMGUwZTAxMGEtOGQ1OC00MjEyLTgzNDgtMDMyMTE2YzZjZDVlIiwiZXhwIjo4ODAyMTUwMDYwOCwiaWRlbnRpdHkiOjMsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.mPRHtpozzGyzPHud4RHUVKSPzeoKEwAXqFIXws2u3RM' \
+  https://boiling-wildwood-20063.herokuapp.com/api/user \
+  -H 'authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjE5MzM2MzgsIm5iZiI6MTYyMTkzMzYzOCwianRpIjoiODkxZTYyM2YtNDZhYi00ZGVhLTk2NDctZmVmMDI2MDYyNTU1IiwiZXhwIjoxNjIxOTM0NTM4LCJpZGVudGl0eSI6NiwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.FAqVX4Cwr7XAiYIrrbma3sDIWaFUicUnq67OvIbq4sY' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -H 'postman-token: 22e897c5-f734-c2fb-8174-223463d21c10' \
   -H 'x-requested-with: XMLHttpRequest'
 ```
 
--  ログインしたユーザが記事を作成する API を叩く curl コマンド
-- `main.py` の `Main.create_article()` に該当する。 
+- ログインしたユーザが記事を作成する API を叩く curl コマンドである。
+- `main.py` の `Main.create_article()` に該当する。(未実装)
 
 ```bash
 curl -X POST \
-  http://127.0.0.1:5000/api/articles \
-  -H 'authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjE1MDA2MDgsIm5iZiI6MTYyMTUwMDYwOCwianRpIjoiMGUwZTAxMGEtOGQ1OC00MjEyLTgzNDgtMDMyMTE2YzZjZDVlIiwiZXhwIjo4ODAyMTUwMDYwOCwiaWRlbnRpdHkiOjMsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.mPRHtpozzGyzPHud4RHUVKSPzeoKEwAXqFIXws2u3RM' \
-  -H 'cache-control: no-cache' \
+  https://boiling-wildwood-20063.herokuapp.com/api/articles \
+  -H 'authorization: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjE5MzM2MzgsIm5iZiI6MTYyMTkzMzYzOCwianRpIjoiODkxZTYyM2YtNDZhYi00ZGVhLTk2NDctZmVmMDI2MDYyNTU1IiwiZXhwIjoxNjIxOTM0NTM4LCJpZGVudGl0eSI6NiwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.FAqVX4Cwr7XAiYIrrbma3sDIWaFUicUnq67OvIbq4sY' \
   -H 'content-type: application/json' \
-  -H 'postman-token: 22beb665-0e01-219c-74a2-5457b16116a9' \
   -H 'x-requested-with: XMLHttpRequest' \
   -d '{
   "article": {
-    "title": "How to train your dragon",
-    "description": "Ever wonder how?",
-    "body": "You have to believe",
-    "tagList": ["reactjs", "angularjs", "dragons"]
+    "title": "test",
+    "description": "test",
+    "body": "test",
+    "tagList": ["test"]
   }
 }'
 ```
