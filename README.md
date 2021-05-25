@@ -28,4 +28,4 @@
 
 - [仕様](https://github.com/gothinkster/realworld/tree/master/api)
   - ユーザ認証 (認証方式は JWT) で、CRUD の API を兼ね備えた REST API である。
-  - [RealWorld example apps](https://github.com/gothinkster/realworld) の backends を参考にしている。
+  - [RealWorld example apps](https://github.com/gothinkster/realworld) の backends で紹介されている [flask-realworld-example-app](https://github.com/gothinkster/flask-realworld-example-app) を参考にしている。
