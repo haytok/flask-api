@@ -1,0 +1,5 @@
+ipython
+requests
+flake8
+isort
+python-dotenv
