@@ -1,6 +1,6 @@
 # 目的
 
-- Heroku 上の REST API に対して curl と Python の requests で HTTP request を投げる。
+- Heroku 上の REST API に対して Python の requests と curl コマンドで HTTP request を投げる。
 
 # 準備
 
@@ -25,7 +25,7 @@ docker run -it -v `pwd`:`pwd` main
 
 ## 手段 1
 
-- Pyhton スクリプトで処理を行う。
+- Pyhton スクリプトで REST API に HTTP Request を行う。
 
 ```bash
 python main.py
@@ -33,9 +33,9 @@ python main.py
 
 ## 手段 2
 
-- curl コマンドだけで処理を行う。
+- curl で REST API に HTTP Request を行う。
 
-- ユーザを作成するための API を叩く curl コマンドである。
+- このコマンドは、ユーザを作成するための API を叩く curl コマンドである。
 
 - `main.py` の `Main.create_user()` に該当する。 
 
@@ -54,7 +54,7 @@ curl -X POST \
 }'
 ```
 
-- ログインするための API を叩く curl コマンドである。
+- このコマンドは、ログインするための API を叩く curl コマンドである。
 - `main.py` の `Main.login_user()` に該当する。 
 
 ```bash
@@ -66,7 +66,7 @@ curl -X GET \
   -H 'x-requested-with: XMLHttpRequest'
 ```
 
-- ログインしたユーザが記事を作成する API を叩く curl コマンドである。
+- このコマンドは、ログインしたユーザが記事を作成する API を叩く curl コマンドである。
 - `main.py` の `Main.create_article()` に該当する。(未実装)
 
 ```bash
