@@ -40,9 +40,9 @@ heroku Push rejected, failed to compile Python app.
 
 - 開発環境でのライブラリのバージョンは参考の 1 を参考にした。しかし、本番環境では、`SQLAlchemy` などのライブラリが古いとのエラーが出て、インストールできなかった。そこで、本番環境では、ライブラリを最新バージョンをインストールし、アプリケーション側でその整合性を保つように変更した。
 
-- ライブラリを再度インストールする際に、キャッシュが効くのが原因で `requirements.txt` を変更してもライブラリが再度インストールされない。また、`pip uninstall hogehoge && pip install hogehoge` を行ってもバージョンはアップデートされない。参考の 2, 3 の記事より、プラグインである [heroku-builds](https://github.com/heroku/heroku-builds) を使って一度インストールしたライブラリを削除してから、再度 `git push heroku master` のコマンドを実行し、再度ライブラリをインストールする手順が必要である。
+- ライブラリを再度インストールする際に、キャッシュが効くのが原因で `requirements.txt` を変更してもライブラリが再度インストールされない。また、`heroku run bash` で Heroku 上に繫ぎ、`pip uninstall hogehoge && pip install hogehoge` を行ってもバージョンはアップデートされない。参考の 2, 3 の記事より、プラグインである [heroku-builds](https://github.com/heroku/heroku-builds) を使って一度インストールしたライブラリを削除してから、再度 `git push heroku master` のコマンドを実行し、再度ライブラリをインストールする手順が必要である。
 
-- ライブラリがインストールされない理由は、Heroku を構成するコンテナ (Dyno) のライフサイクルと関係している。このライフサイクルは興味深いのだが、本筋とは外れるので、ここでは割愛する。
+- ライブラリがインストールされない理由は、Heroku を構成するコンテナ ([Dyno](https://www.heroku.com/dynos)) のライフサイクルと関係している。このライフサイクルは興味深いのだが、本筋とは外れるので、ここでは割愛する。
 
 ### 参考
 
@@ -68,6 +68,22 @@ AttributeError: 'SQLAlchemy' object has no attribute 'Binary'
 ### 参考
 
 1. [Remove deprecated class Binary. Please use LargeBinary.](https://docs.sqlalchemy.org/en/14/changelog/changelog_14.html#change-214869a306f72f33237772d33fc332ec)
+
+## Heroku 上の環境変数に、Flask のエントリーポイントとなるファイルのパスとデバッグオプションと秘匿情報を設定する
+
+- 環境変数の設定がおかしく、アプリケーションが正常に動作しない。`heroku run bash` コマンドでデプロイ先の Heroku のパスを確認する。[1] そうすると Flask のエントリーポイントのパスがわかる。
+- その後、GUI あるいは CLI で 3 つの環境変数を設定する。CLI から環境変数を設定する方法は参考 2 に記述されている。
+
+```bash
+heroku config:set FLASK_APP=/app/autoapp.py
+heroku config:set FLASK_DEBUG=1
+heroku config:set CONDUIT_SECRET='hogehogehoge'
+```
+
+### 参考
+
+1. [heroku run](https://devcenter.heroku.com/articles/heroku-cli-commands#heroku-run)
+2. [Managing config vars](https://devcenter.heroku.com/articles/config-vars#managing-config-vars)
 
 ## Heroku 上に PostgresSQL Database を立ち上げる
 
@@ -107,18 +123,3 @@ sqlalchemy unique constraint
 ...
 ```
 
-## Heroku 上の環境変数に、Flask のエントリーポイントとなるファイルのパスとデバッグオプションと秘匿情報を設定する
-
-- Deploy には成功したが、アプリケーションが正常に動作しない。`heroku run bash` コマンドでデプロイ先の Heroku のパスを確認する。[1] そうすると Flask のエントリーポイントのパスがわかる。
-- その後、GUI あるいは CLI で 3 つの環境変数を設定する。CLI から環境変数を設定する方法は参考 2 に記述されている。
-
-```bash
-heroku config:set FLASK_APP=/app/autoapp.py
-heroku config:set FLASK_DEBUG=1
-heroku config:set CONDUIT_SECRET='hogehogehoge'
-```
-
-### 参考
-
-1. [heroku run](https://devcenter.heroku.com/articles/heroku-cli-commands#heroku-run)
-2. [Managing config vars](https://devcenter.heroku.com/articles/config-vars#managing-config-vars)
