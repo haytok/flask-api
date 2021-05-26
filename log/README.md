@@ -2,7 +2,7 @@
 
 - 開発やデプロイの際に生じた問題とその解決法をこのログに残す。
 
-## push してデプロイすることできない
+## push してデプロイすることができない
 
 - 開発したものを Heroku 上に Deploy する際、`git push heroku master` ではなく、 `git push heroku main` のコマンドを打つ必要がある。これは、GitHub のデフォルトブランチが master から main になったからである。
 
@@ -20,7 +20,7 @@ heroku Push rejected, failed to compile Python app.
 ...
 ```
 
-- ログを見ていると、`Pipfile.lock` の依存関係がおかしいとあった。おそらく、Heroku 上で Python のライブラリをインストールする作業でコケていると推測した。以下の参考の 1 の記事によると、Pipfile, Pipfile.lock と requirements.txt が共存すると、requirements.txt が無視されるようである。これは、Heroku 上の挙動からもわかる。Heroku 公式が推奨する Python ライブラリのインストール方法は、参考の 2 にあり、requirements.txt を使用するやり方である。従って、Pipfile と Pipfile.lock を削除して、requirements.txt からライブラリをインストールする方針に変更した。
+- ログを見ていると、`Pipfile.lock` の依存関係がおかしいとあった。おそらく、Heroku 上で Python のライブラリをインストールする作業でコケていると推測できる。以下の参考の 1 の記事によると、Pipfile, Pipfile.lock と requirements.txt が共存すると、requirements.txt が無視されるようである。これは、Heroku 上の挙動からもわかる。Heroku 公式が推奨する Python ライブラリのインストール方法は、参考の 2 に記述されていて、requirements.txt を使用するやり方である。従って、Pipfile と Pipfile.lock を削除して、requirements.txt からライブラリをインストールする方針に変更した。
 
 ### 参考
 
@@ -36,9 +36,10 @@ heroku Push rejected, failed to compile Python app.
 1. [Specifying a Python version ](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version)
 2. [Specifying a Python Runtime](https://devcenter.heroku.com/articles/python-runtimes)
 
-## Heroku 上の環境変数に、Flask のエントリーポイントとなるファイルのパスとデバッグオプションを設定する
+## Heroku 上の環境変数に、Flask のエントリーポイントとなるファイルのパスとデバッグオプションと秘匿情報を設定する
 
-- Deploy には成功したが、アプリケーションが正常に動作しない。`heroku run bash` コマンドでデプロイ先の Heroku のパスを確認する。その後、GUI あるいは CLI で `FLASK_APP=/app/autoapp.py` を設定する。CLI から環境変数を設定する方法は参考 2 に記述されている。コマンドは、以下の 2 つである。
+- Deploy には成功したが、アプリケーションが正常に動作しない。`heroku run bash` コマンドでデプロイ先の Heroku のパスを確認する。[1] そうすると Flask のエントリーポイントのパスがわかる。
+- その後、GUI あるいは CLI で 3 つの環境変数を設定する。CLI から環境変数を設定する方法は参考 2 に記述されている。
 
 ```bash
 heroku config:set FLASK_APP=/app/autoapp.py
