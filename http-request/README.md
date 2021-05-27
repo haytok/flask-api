@@ -17,7 +17,7 @@ pip install -r requirements.txt
 - Docker を使用する。
 
 ```bash
-docker build -t .
+docker build -t main .
 docker run -it -v `pwd`:`pwd` main
 ```
 
