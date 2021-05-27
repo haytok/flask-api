@@ -67,7 +67,7 @@ curl -X GET \
 ```
 
 - このコマンドは、ログインしたユーザが記事を作成する API を叩く curl コマンドである。
-- `main.py` の `Main.create_article()` に該当する。(未実装)
+- `main.py` の `Main.create_article()` に該当する。
 
 ```bash
 curl -X POST \
@@ -77,10 +77,10 @@ curl -X POST \
   -H 'x-requested-with: XMLHttpRequest' \
   -d '{
   "article": {
-    "title": "test",
-    "description": "test",
-    "body": "test",
-    "tagList": ["test"]
+    "title": "What I cannot create, I do not understand",
+    "description": "Richard Feynman Physics notebook",
+    "body": "Richard Feynman Physics notebook",
+    "tagList": ["Physics"]
   }
 }'
 ```
