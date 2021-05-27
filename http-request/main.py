@@ -46,6 +46,7 @@ class Main(object):
             print(*create_user_response_json['errors']['body'])
             login_user_response = self.login_user()
             self.token = login_user_response['user']['token']
+            self.base_headers['Authorization'] = 'Token {}'.format(self.token)
             return
         
         if 'user' in create_user_response_json:
@@ -72,8 +73,35 @@ class Main(object):
         )
         return login_user_response.json()
 
-    def create_article(self):
-        pass
+    def create_article(self, title, description, body, tagList):
+        request_url = '{}/api/articles'.format(self.BASE_URL)
+
+        headers = self.base_headers.copy()
+
+        payload = {
+            'article': {
+                'title': title,
+                'description': description,
+                'body': body,
+                'tagList': tagList
+            }
+        }
+
+        create_article_response = requests.post(
+            request_url,
+            headers=headers,
+            data=json.dumps(payload)
+        )
+        try:
+            return create_article_response.json()
+        except:
+            status_code = create_article_response.status_code
+            if 500 <= status_code < 600:
+                print('backend error {}'.format(status_code))
+            elif 400 <= status_code < 500:
+                print('invalid input data {}'.format(status_code))
+            else:
+                print('unexpected error {}'.format(status_code))
 
 
 if __name__ == '__main__':
@@ -82,16 +110,23 @@ if __name__ == '__main__':
     parser.add_argument('-e', '--environment', help='set environment.')
     args = parser.parse_args()
 
-    # テストする際に定義する必要がある。
-    email = 'test_1@mail.com'
-    password = 'password'
-    username = 'test_1'
-
     # 環境変数を読み出す
     configs = dotenv_values('.env')
     base_url = configs['DEV_BASE_URL'] if args.environment == 'dev' else configs['PROD_BASE_URL']
 
     print(base_url)
+
+    # ユーザを登録する際は、毎回値を変更する必要がある。
+    email = 'test_1@mail.com'
+    password = 'password'
+    username = 'test_1'
+
+    # 記事を登録する際は、毎回値を変更する必要がある。
+    title = 'What I cannot create, I do not understand'
+    description = 'Richard Feynman Physics notebook'
+    body = 'Richard Feynman Physics notebook'
+    tagList = ['Physics']
     
     main = Main(email, password, username, base_url)
     main.create_user()
+    main.create_article(title, description, body, tagList)
