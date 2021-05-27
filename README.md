@@ -20,9 +20,9 @@
 
 - Flask 2.0.0
 
-- requests 2.25.1
+- [requests 2.25.1](https://github.com/psf/requests)
 
-- curl 7.58.0 (x86_64-pc-linux-gnu)
+- [curl 7.58.0 (x86_64-pc-linux-gnu)](http://manpages.ubuntu.com/manpages/trusty/man1/curl.1.html)
 
 ### REST API の仕様
 
