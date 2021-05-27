@@ -6,7 +6,7 @@
 
 ## 方法
 
-- [Heroku](https://jp.heroku.com/home) という PaaS 上に、基本的な機能を兼ね備えた REST API をデプロイする。そして、その API を叩くための Python スクリプトと curl コマンドを実装する。
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/) という Python の Web フレームワークを用いて基本的な機能を兼ね備えた REST API を作成する。その API を [Heroku](https://jp.heroku.com/home) という PaaS 上にデプロイする。そして、その API を叩くための Python スクリプトと curl コマンドを実装する。
 - 詳細は [http-request](https://github.com/dilmnqvovpnmlib/flask-api/tree/main/http-request) 配下に記述している。
 
 ### 検証環境
