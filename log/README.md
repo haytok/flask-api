@@ -123,3 +123,29 @@ sqlalchemy unique constraint
 ...
 ```
 
+## 開発環境の構築の際にはまった設定
+
+### 背景・問題
+
+- `docker-compose.yml` の `command` の設定に `flask run --with-threads` と設定を行った。しかし、ホストマシンから `curl localhost:5000` でコンテナ内の API サーバにアクセスすることができない。
+
+### 原因
+
+- コンテナのループバックアドレスにはホストマシンからアクセスすることができない。(セキュリティ的な観点から)
+
+### 解決方法
+
+- Flask の開発用サーバを起動する際に、Listen するアドレスを変更する必要がある。API サーバのアドレスを `0.0.0.0` にすると、ホストからコンテナ内の API サーバにアクセスできる。その際、ポートフォワードの設定を `docker-compose.yml` に忘れないようにする。
+
+```bash
+flask run --host=0.0.0.0
+```
+
+## 応用例
+
+- パソコン上で `python -m http.server 8000` を実行する。そうすると、同一ネットワークの端末 (ex. スマホ) などから `<パソコンの IP アドレス>:8000` からアクセスできる。
+
+### 参考
+
+- [docker上のアプリにlocalhostでアクセスしたらERR_EMPTY_RESPONSEが出る](https://qiita.com/amuyikam/items/01a8c16e3ddbcc734a46#flask)
+- [hk-41](https://github.com/dilmnqvovpnmlib/hk-41/)
