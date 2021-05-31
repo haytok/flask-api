@@ -117,9 +117,9 @@ if __name__ == '__main__':
     print(base_url)
 
     # ユーザを登録する際は、毎回値を変更する必要がある。
-    email = 'test_1@mail.com'
+    email = 'test_1@mail.com' # 変更必要箇所
     password = 'password'
-    username = 'test_1'
+    username = 'test_1' # 変更必要箇所
 
     # 記事を登録する際は、毎回値を変更する必要がある。
     title = 'What I cannot create, I do not understand'
