@@ -32,8 +32,22 @@
 
 ### API サーバの開発環境の構築方法
 
+- API サーバのビルド
+
+```bash
+make dev-build
 ```
+
+- API サーバの起動
+
+```bash
 make dev-up
+```
+
+- API サーバの停止
+
+```bash
+make dev-down
 ````
 
 ### Deploy する際に行った作業のログ
