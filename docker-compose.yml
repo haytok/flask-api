@@ -1,0 +1,14 @@
+
+version: "3"
+
+services:
+    main:
+        build: .
+        # environment:
+        #   - DJANGO_APP_MODE=prod
+        ports:
+            - "5000:5000"
+        command: flask run --with-threads --host=0.0.0.0
+        volumes:
+            - .:/app
+        restart: always
