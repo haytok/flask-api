@@ -149,3 +149,18 @@ flask run --host=0.0.0.0
 
 - [docker上のアプリにlocalhostでアクセスしたらERR_EMPTY_RESPONSEが出る](https://qiita.com/amuyikam/items/01a8c16e3ddbcc734a46#flask)
 - [hk-41](https://github.com/dilmnqvovpnmlib/hk-41/)
+
+## Heroku の内部のロジックに関して
+
+- [Heroku の Slug は友達](https://masutaka.net/chalow/2018-12-21-1.html)
+- [構築・運用の必須知識！ Herokuアプリケーションの実行プラットフォーム「Dyno」を徹底的に理解する](https://codezine.jp/article/detail/8344)
+- [アクセス急増にもコマンド一発で対応！ Herokuで手に入れるアプリケーションの拡張性](https://codezine.jp/article/detail/10321)
+- [Heroku の Dyno を時間でスケールさせる方法](https://www.bokukoko.info/entry/2019/10/12/120002)
+- 公式ドキュメント
+  - [Heroku ランタイム](https://jp.heroku.com/platform/runtime)
+  - [Dyno のライフサイクル](https://jp.heroku.com/dynos/lifecycle)
+  - [最先端の PaaS にアプリをデプロイして実行しましょう](https://jp.heroku.com/platform)
+  - [Heroku dyno](https://jp.heroku.com/dynos)
+  - [dyno を使用したアプリのスケール](https://jp.heroku.com/dynos/scaling)
+  - [slug コンパイラ](https://devcenter.heroku.com/ja/articles/slug-compiler)
+  - [ビルド時](https://jp.heroku.com/dynos/build)
