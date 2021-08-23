@@ -1,6 +1,6 @@
 import time
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 blueprint = Blueprint('hello', __name__)
 
