@@ -17,3 +17,8 @@ def get_hello():
         'sleep_time': sleep_time,
     }
     return jsonify(res)
+
+
+@blueprint.route('/api/text', methods=('GET', ))
+def get_text():
+    return 'Text'
