@@ -21,4 +21,9 @@ def get_hello():
 
 @blueprint.route('/api/text', methods=('GET', ))
 def get_text():
-    return 'Text'
+    return 'Text from GET API'
+
+
+@blueprint.route('/api/text', methods=('POST', ))
+def post_text():
+    return 'Text from POST API'
