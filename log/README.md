@@ -164,3 +164,22 @@ flask run --host=0.0.0.0
   - [dyno を使用したアプリのスケール](https://jp.heroku.com/dynos/scaling)
   - [slug コンパイラ](https://devcenter.heroku.com/ja/articles/slug-compiler)
   - [ビルド時](https://jp.heroku.com/dynos/build)
+
+## Heroku を扱う際の CLI 周りの忘れやすいコマンドについて
+
+- Heroku にデプロイするためのコマンド
+
+```bash
+git push heroku main
+```
+
+- Heroku 上のアプリケーションに入るためのコマンド
+
+```bash
+heroku login bash
+```
+
+### 参考
+
+- [Heroku コマンド集](https://qiita.com/yu_eguchi/items/8cd53942b88b7ff2fecb)
+- [github にpushしてherokuにあげるまでの流れ](https://qiita.com/meeeeee/items/40ab34f553ec08304083)

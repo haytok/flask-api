@@ -30,6 +30,13 @@
   - ユーザ認証 (認証方式は JWT) で、CRUD の API を兼ね備えた REST API である。
   - [RealWorld example apps](https://github.com/gothinkster/realworld) の backends で紹介されている [flask-realworld-example-app](https://github.com/gothinkster/flask-realworld-example-app) を参考にしている。これは、[Medium.com](https://medium.com/) の API の clone である。
 
+#### API List
+
+- `/api/hello`
+  - GET
+- `/api/users`
+  - POST
+
 ### API サーバの開発環境の構築方法
 
 - API サーバのビルド
